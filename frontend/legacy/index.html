@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NCAA WR Prospect Scout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">&#127944;</span>
+        <div>
+          <h1>NCAA Prospect Scout</h1>
+          <p>Wide Receiver Analytics &bull; PFF Data</p>
+        </div>
+      </div>
+      <div class="year-selector" id="year-selector"></div>
+    </div>
+  </header>
+
+  <main>
+    <div id="loading">Loading data...</div>
+
+    <div id="content" style="display:none;">
+      <div class="controls-bar">
+        <input type="text" id="search" placeholder="Search player or team...">
+        <div class="filter-group">
+          <label>Min Games</label>
+          <select id="min-games">
+            <option value="1">1+</option>
+            <option value="6">6+</option>
+            <option value="8" selected>8+</option>
+            <option value="10">10+</option>
+            <option value="12">12+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Min Targets</label>
+          <select id="min-targets">
+            <option value="0">Any</option>
+            <option value="10">10+</option>
+            <option value="25">25+</option>
+            <option value="50">50+</option>
+            <option value="70" selected>70+</option>
+            <option value="100">100+</option>
+            <option value="125">125+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Position</label>
+          <select id="position-filter">
+            <option value="">All</option>
+          </select>
+        </div>
+        <label id="declared-filter-wrap" class="toggle-label" style="display:none;">
+          <input type="checkbox" id="declared-only">
+          Draft Declared Only
+        </label>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-tab="leaderboard">Leaderboard</button>
+          <button class="tab" data-tab="scatter">Scatter Plot</button>
+        </div>
+        <div class="player-count" id="player-count"></div>
+      </div>
+
+      <!-- Leaderboard Tab -->
+      <div id="leaderboard-tab" class="tab-content active">
+        <div class="table-wrapper">
+          <table id="stats-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Scatter Plot Tab -->
+      <div id="scatter-tab" class="tab-content">
+        <div class="scatter-controls">
+          <div class="axis-control">
+            <label>X Axis</label>
+            <select id="x-axis"></select>
+          </div>
+          <div class="axis-control">
+            <label>Y Axis</label>
+            <select id="y-axis"></select>
+          </div>
+          <div class="axis-control">
+            <label>Min Games</label>
+            <select id="scatter-min-games">
+              <option value="1">1+</option>
+              <option value="6">6+</option>
+              <option value="8" selected>8+</option>
+              <option value="10">10+</option>
+              <option value="12">12+</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="scatter-chart"></canvas>
+        </div>
+        <div class="scatter-legend">
+          <span class="legend-label">Dot color by Offense Grade:</span>
+          <div class="legend-item"><div class="legend-dot" style="background:#00c896"></div><span>85+</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#64c864"></div><span>75-84</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ffc832"></div><span>65-74</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ff9632"></div><span>55-64</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#ff6464"></div><span>&lt;55</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Player Modal -->
+  <div id="player-modal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-mark">SA</span>
+        <span class="logo-text">Sports Analytics</span>
+      </div>
+      <nav class="sport-nav" id="sport-nav">
+        <a href="mlb.html" class="nav-link" data-sport="mlb">MLB</a>
+        <a href="nfl.html" class="nav-link" data-sport="nfl">NFL</a>
+        <a href="ncaa-fb.html" class="nav-link" data-sport="ncaa-fb">NCAA FB</a>
+        <a href="ncaa-bb.html" class="nav-link" data-sport="ncaa-bb">NCAA BB</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <div class="hero">
+      <h1 class="hero-title">Advanced Sports Analytics</h1>
+      <p class="hero-sub">Statcast-style metrics for MLB, NFL, NCAA Football &amp; Basketball</p>
+    </div>
+
+    <div class="sport-cards">
+
+      <a href="mlb.html" class="sport-card" data-sport="mlb">
+        <div class="card-sport-label">MLB</div>
+        <h2 class="card-title">Major League Baseball</h2>
+        <p class="card-desc">Teams &amp; Players — Statcast, Batting, Pitching, xStats</p>
+        <div class="card-links">
+          <span class="pill">Teams</span>
+          <span class="pill">Batting</span>
+          <span class="pill">Pitching</span>
+          <span class="pill">Statcast</span>
+        </div>
+      </a>
+
+      <a href="nfl.html" class="sport-card" data-sport="nfl">
+        <div class="card-sport-label">NFL</div>
+        <h2 class="card-title">National Football League</h2>
+        <p class="card-desc">Teams &amp; Players — EPA, CPOE, ADOT, nflfastR metrics</p>
+        <div class="card-links">
+          <span class="pill">Teams</span>
+          <span class="pill">Passing</span>
+          <span class="pill">Rushing</span>
+          <span class="pill">Receiving</span>
+        </div>
+      </a>
+
+      <a href="ncaa-fb.html" class="sport-card" data-sport="ncaa-fb">
+        <div class="card-sport-label">NCAA FB</div>
+        <h2 class="card-title">College Football</h2>
+        <p class="card-desc">Player Stats — Passing, Rushing, Receiving by Conference</p>
+        <div class="card-links">
+          <span class="pill">Passing</span>
+          <span class="pill">Rushing</span>
+          <span class="pill">Receiving</span>
+          <span class="pill">WR Scout</span>
+        </div>
+      </a>
+
+      <a href="ncaa-bb.html" class="sport-card" data-sport="ncaa-bb">
+        <div class="card-sport-label">NCAA BB</div>
+        <h2 class="card-title">College Basketball</h2>
+        <p class="card-desc">Team Efficiency — Four Factors, KenPom-style ratings</p>
+        <div class="card-links">
+          <span class="pill">Teams</span>
+          <span class="pill">Efficiency</span>
+          <span class="pill">Four Factors</span>
+          <span class="pill">Standings</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
