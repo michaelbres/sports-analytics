@@ -5,6 +5,6 @@ psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 requests==2.32.3
 pandas==2.2.3
-numpy==2.1.2
+numpy==1.26.4
 pybaseball==2.2.7
 nfl_data_py==0.3.3
