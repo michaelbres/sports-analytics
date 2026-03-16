@@ -7,4 +7,4 @@ requests==2.32.3
 pandas==2.2.3
 numpy==2.1.2
 pybaseball==2.2.7
-nfl_data_py==0.3.4
+nfl_data_py==0.3.3
