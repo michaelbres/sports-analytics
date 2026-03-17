@@ -23,7 +23,7 @@ def get_players(
         q = q.filter(NCAAFBPlayer.conference == conference)
     if team:
         q = q.filter(NCAAFBPlayer.team == team)
-    return q.all()
+    return [r.to_dict() for r in q.all()]
 
 
 @router.get("/passing")
@@ -32,11 +32,11 @@ def get_passing(
     min_attempts: int = Query(50),
     db: Session = Depends(get_db),
 ):
-    return (
+    return [r.to_dict() for r in
         db.query(NCAAFBPassingStats)
         .filter(NCAAFBPassingStats.season == season, NCAAFBPassingStats.attempts >= min_attempts)
         .all()
-    )
+    ]
 
 
 @router.get("/rushing")
@@ -45,11 +45,11 @@ def get_rushing(
     min_carries: int = Query(30),
     db: Session = Depends(get_db),
 ):
-    return (
+    return [r.to_dict() for r in
         db.query(NCAAFBRushingStats)
         .filter(NCAAFBRushingStats.season == season, NCAAFBRushingStats.carries >= min_carries)
         .all()
-    )
+    ]
 
 
 @router.get("/receiving")
@@ -58,8 +58,8 @@ def get_receiving(
     min_targets: int = Query(20),
     db: Session = Depends(get_db),
 ):
-    return (
+    return [r.to_dict() for r in
         db.query(NCAAFBReceivingStats)
         .filter(NCAAFBReceivingStats.season == season, NCAAFBReceivingStats.targets >= min_targets)
         .all()
-    )
+    ]

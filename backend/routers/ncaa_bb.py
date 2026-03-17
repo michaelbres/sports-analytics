@@ -17,12 +17,13 @@ def get_teams(
     q = db.query(NCAABBTeam).filter(NCAABBTeam.season == season)
     if conference:
         q = q.filter(NCAABBTeam.conference == conference)
-    return q.all()
+    return [r.to_dict() for r in q.all()]
 
 
 @router.get("/teams/{team_id}")
 def get_team(team_id: str, season: str = Query("2024-25"), db: Session = Depends(get_db)):
-    return db.query(NCAABBTeam).filter(NCAABBTeam.team_id == team_id, NCAABBTeam.season == season).first()
+    r = db.query(NCAABBTeam).filter(NCAABBTeam.team_id == team_id, NCAABBTeam.season == season).first()
+    return r.to_dict() if r else None
 
 
 @router.get("/stats")
@@ -35,4 +36,4 @@ def get_team_stats(
     q = db.query(NCAABBTeamStats).filter(NCAABBTeamStats.season == season)
     results = q.all()
     results.sort(key=lambda x: getattr(x, sort_by, 0) or 0, reverse=True)
-    return results
+    return [r.to_dict() for r in results]

@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load .env from project root (one level up from backend/)
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./sports.db")
 
@@ -20,7 +22,8 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 class Base(DeclarativeBase):
-    pass
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 def get_db():

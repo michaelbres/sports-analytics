@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp index.html frontend/legacy/index.html)",
+      "Bash(cp app.js frontend/legacy/app.js)",
+      "Bash(cp style.css frontend/legacy/style.css)",
+      "Bash(cp receiving_*.csv frontend/legacy/data/)",
+      "Bash(cp receiving_scheme_2025.csv frontend/legacy/data/)",
+      "WebFetch(domain:sports-analytics-bc8d.onrender.com)"
+    ]
+  }
+}

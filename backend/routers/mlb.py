@@ -10,12 +10,13 @@ router = APIRouter()
 
 @router.get("/teams")
 def get_teams(season: int = Query(2025), db: Session = Depends(get_db)):
-    return db.query(MLBTeam).filter(MLBTeam.season == season).all()
+    return [r.to_dict() for r in db.query(MLBTeam).filter(MLBTeam.season == season).all()]
 
 
 @router.get("/teams/{team_id}")
 def get_team(team_id: str, season: int = Query(2025), db: Session = Depends(get_db)):
-    return db.query(MLBTeam).filter(MLBTeam.team_id == team_id, MLBTeam.season == season).first()
+    r = db.query(MLBTeam).filter(MLBTeam.team_id == team_id, MLBTeam.season == season).first()
+    return r.to_dict() if r else None
 
 
 @router.get("/batting")
@@ -31,7 +32,7 @@ def get_batting(
     )
     if team:
         q = q.filter(MLBBattingStats.team == team)
-    return q.all()
+    return [r.to_dict() for r in q.all()]
 
 
 @router.get("/pitching")
@@ -47,4 +48,4 @@ def get_pitching(
     )
     if team:
         q = q.filter(MLBPitchingStats.team == team)
-    return q.all()
+    return [r.to_dict() for r in q.all()]
