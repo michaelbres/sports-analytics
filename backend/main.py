@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 from database import engine, Base
-from routers import mlb, nfl, ncaa_fb, ncaa_bb
+from routers import mlb, nfl, ncaa_fb, ncaa_bb, admin
 
 
 @asynccontextmanager
@@ -27,6 +27,7 @@ app.include_router(mlb.router, prefix="/api/mlb", tags=["MLB"])
 app.include_router(nfl.router, prefix="/api/nfl", tags=["NFL"])
 app.include_router(ncaa_fb.router, prefix="/api/ncaa-fb", tags=["NCAA Football"])
 app.include_router(ncaa_bb.router, prefix="/api/ncaa-bb", tags=["NCAA Basketball"])
+app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])
 
 
 @app.get("/api/health")

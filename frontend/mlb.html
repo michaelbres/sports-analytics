@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLB — Sports Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+          <span class="logo-mark">SA</span>
+          <span class="logo-text">Sports Analytics</span>
+        </a>
+      </div>
+      <nav class="sport-nav">
+        <a href="mlb.html"     class="nav-link" data-sport="mlb">MLB</a>
+        <a href="nfl.html"     class="nav-link" data-sport="nfl">NFL</a>
+        <a href="ncaa-fb.html" class="nav-link" data-sport="ncaa-fb">NCAA FB</a>
+        <a href="ncaa-bb.html" class="nav-link" data-sport="ncaa-bb">NCAA BB</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sport-main">
+    <div class="page-header">
+      <h1 class="page-title" style="color:var(--mlb)">MLB</h1>
+      <div class="tabs" id="main-tabs">
+        <button class="tab active" data-tab="batting">Batting</button>
+        <button class="tab" data-tab="pitching">Pitching</button>
+        <button class="tab" data-tab="teams">Teams</button>
+      </div>
+      <select class="season-select" id="season-select">
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+        <option value="2022">2022</option>
+      </select>
+    </div>
+
+    <div id="loading">Loading...</div>
+
+    <div id="content" style="display:none;">
+
+      <!-- ── BATTING ── -->
+      <div id="batting-tab" class="tab-content active">
+        <div class="controls-bar">
+          <input type="text" id="batting-search" placeholder="Search player or team...">
+          <div class="filter-group">
+            <label>Min PA</label>
+            <select id="min-pa">
+              <option value="0">Any</option>
+              <option value="50">50+</option>
+              <option value="100">100+</option>
+              <option value="200" selected>200+</option>
+              <option value="300">300+</option>
+              <option value="400">400+</option>
+              <option value="502">Qualified</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>View</label>
+            <select id="batting-view">
+              <option value="standard">Standard</option>
+              <option value="statcast">Statcast</option>
+            </select>
+          </div>
+          <span class="player-count" id="batting-count"></span>
+        </div>
+        <div class="table-wrapper">
+          <table id="batting-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <!-- ── PITCHING ── -->
+      <div id="pitching-tab" class="tab-content">
+        <div class="controls-bar">
+          <input type="text" id="pitching-search" placeholder="Search pitcher or team...">
+          <div class="filter-group">
+            <label>Min IP</label>
+            <select id="min-ip">
+              <option value="0">Any</option>
+              <option value="10">10+</option>
+              <option value="30">30+</option>
+              <option value="50" selected>50+</option>
+              <option value="100">100+</option>
+              <option value="162">Qualified</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>View</label>
+            <select id="pitching-view">
+              <option value="standard">Standard</option>
+              <option value="statcast">Statcast</option>
+            </select>
+          </div>
+          <span class="player-count" id="pitching-count"></span>
+        </div>
+        <div class="table-wrapper">
+          <table id="pitching-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <!-- ── TEAMS ── -->
+      <div id="teams-tab" class="tab-content">
+        <div class="controls-bar">
+          <input type="text" id="teams-search" placeholder="Search team...">
+          <div class="filter-group">
+            <label>League</label>
+            <select id="league-filter">
+              <option value="">All</option>
+              <option value="American League">AL</option>
+              <option value="National League">NL</option>
+            </select>
+          </div>
+          <span class="player-count" id="teams-count"></span>
+        </div>
+        <div class="table-wrapper">
+          <table id="teams-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/mlb.js"></script>
+</body>
+</html>

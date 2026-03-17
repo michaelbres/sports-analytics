@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Boolean
+from sqlalchemy import Column, Integer, String, Float
 from database import Base
 
 
@@ -6,12 +6,12 @@ class MLBTeam(Base):
     __tablename__ = "mlb_teams"
 
     id = Column(Integer, primary_key=True, index=True)
-    team_id = Column(String, unique=True, index=True)  # MLB Stats API team ID
+    team_id = Column(String, index=True)
     name = Column(String)
     abbreviation = Column(String)
     division = Column(String)
     league = Column(String)
-    season = Column(Integer)
+    season = Column(Integer, index=True)
 
     # Team batting
     runs = Column(Float)
@@ -20,29 +20,12 @@ class MLBTeam(Base):
     obp = Column(Float)
     slg = Column(Float)
     ops = Column(Float)
-    wrc_plus = Column(Float)
 
     # Team pitching
     era = Column(Float)
     whip = Column(Float)
     k_per_9 = Column(Float)
-    bb_per_9 = Column(Float)
     fip = Column(Float)
-
-
-class MLBPlayer(Base):
-    __tablename__ = "mlb_players"
-
-    id = Column(Integer, primary_key=True, index=True)
-    player_id = Column(String, unique=True, index=True)  # MLB Stats API player ID
-    name = Column(String, index=True)
-    team = Column(String)
-    team_id = Column(String)
-    position = Column(String)
-    bats = Column(String)
-    throws = Column(String)
-    age = Column(Integer)
-    season = Column(Integer)
 
 
 class MLBBattingStats(Base):
@@ -51,6 +34,10 @@ class MLBBattingStats(Base):
     id = Column(Integer, primary_key=True, index=True)
     player_id = Column(String, index=True)
     season = Column(Integer, index=True)
+    name = Column(String, index=True)
+    team = Column(String)
+    position = Column(String)
+    age = Column(Integer)
     games = Column(Integer)
     plate_appearances = Column(Integer)
     at_bats = Column(Integer)
@@ -67,6 +54,8 @@ class MLBBattingStats(Base):
     obp = Column(Float)
     slg = Column(Float)
     ops = Column(Float)
+    wrc_plus = Column(Float)
+    war = Column(Float)
     # Statcast
     xba = Column(Float)
     xslg = Column(Float)
@@ -84,6 +73,9 @@ class MLBPitchingStats(Base):
     id = Column(Integer, primary_key=True, index=True)
     player_id = Column(String, index=True)
     season = Column(Integer, index=True)
+    name = Column(String, index=True)
+    team = Column(String)
+    age = Column(Integer)
     games = Column(Integer)
     games_started = Column(Integer)
     innings_pitched = Column(Float)
@@ -96,11 +88,12 @@ class MLBPitchingStats(Base):
     walks = Column(Integer)
     k_per_9 = Column(Float)
     bb_per_9 = Column(Float)
+    k_bb = Column(Float)
     fip = Column(Float)
+    war = Column(Float)
     # Statcast
     xera = Column(Float)
     xfip = Column(Float)
     barrel_pct_against = Column(Float)
     hard_hit_pct_against = Column(Float)
-    spin_rate = Column(Float)
-    velocity = Column(Float)
+    avg_velocity = Column(Float)
